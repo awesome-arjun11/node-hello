@@ -4,13 +4,15 @@ const port2 = process.env.PORT2 || 3001;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  const msg = '<h2>Hello Node!<h2>\n<button onclick="_=>{window.location.port=3001;return false;}"></button>'
+  res.setHeader('Content-Type', 'text/html'); 
+  const msg = '<h2>Hello Node!<h2>\n<button onclick="(()=>window.location.port=3001)()">Go to 3001</button>';
   res.end(msg);
 });
 
 const server2 = http.createServer((req, res) => {
-	res.statusCode = 200;
-	const msg2 = '<h2>Hello again from Node!<h2>\n<button onclick="_=>{window.location.port=3000;return false;}"></button>'
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html'); 
+	const msg2 = '<h2>Hello again from Node!<h2>\n<button onclick="(()=>window.location.port=3000)()">Go to 3000</button>';
 	res.end(msg2);
 });
 
